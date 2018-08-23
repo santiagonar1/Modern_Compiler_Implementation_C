@@ -13,7 +13,7 @@
 typedef char* string;
 typedef char bool;
 
-void *checked_malloc(int)
+void *checked_malloc(int);
 string String(char *);
 
 #endif
