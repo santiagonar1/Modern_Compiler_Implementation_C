@@ -18,7 +18,7 @@ typedef struct A_expList_* A_expList;
 typedef enum {A_plus, A_minus, A_times, A_div} A_binop;
 
 struct A_stm_{
-    enum (A_compoundStm, A_assignStm, A_printStm) kind;
+    enum {A_compoundStm, A_assignStm, A_printStm} kind;
     union {
         struct {A_stm stm1; A_stm stm2;} compound;
         struct {string id; A_exp exp;} assign;
