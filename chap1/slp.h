@@ -8,6 +8,9 @@
  * num      int
  */
 
+#ifndef SLP_H_
+#define SLP_H_
+
 typedef char* string;
 typedef struct A_stm_* A_stm;
 typedef struct A_exp_* A_exp;
@@ -49,3 +52,5 @@ struct A_expList_{
         A_exp last;
     } u;
 };
+
+#endif
