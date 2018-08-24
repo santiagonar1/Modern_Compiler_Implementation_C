@@ -1,7 +1,9 @@
+#include <stdio.h>
 #include "slp.h"
 
 int main(int argc, const char *argv[])
 {
+    printf("Running...\n");
     A_stm prog = A_CompoundStm(A_AssignStm("a",
                 A_OpExp(A_NumExp(5), A_plus, A_NumExp(3))),
             A_CompoundStm(A_AssignStm("b",
@@ -9,5 +11,6 @@ int main(int argc, const char *argv[])
                             A_LastExpList(A_OpExp(A_IdExp("a"), A_minus, A_NumExp(1))))),
                         A_OpExp(A_NumExp(10), A_times, A_IdExp("a")))),
                 A_PrintStm(A_LastExpList(A_IdExp("b")))));
+    printf("Finish...\n");
     return 0;
 }
