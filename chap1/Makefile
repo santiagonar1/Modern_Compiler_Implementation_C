@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-I. -I../tools/
 DEPS=slp.h ../tools/util.h
 
 %.o: %.c $(DEPS)
