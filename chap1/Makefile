@@ -6,5 +6,5 @@ OBJ=program.o slp.o ../tools/util.o
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-program: $(OBJ)
+program.out: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
