@@ -1,4 +1,4 @@
-#include "slc.h"
+#include "slp.h"
 #include "util.h"
 
 
@@ -11,7 +11,7 @@ A_stm A_CompoundStm(A_stm stm1, A_stm stm2){
 }
 
 A_stm A_AssignStm(string id, A_exp exp){
-    A_sim s = checked_malloc(sizeof(*s));
+    A_stm s = checked_malloc(sizeof(*s));
     s->kind = A_assignStm;
     s->u.assign.id = id;
     s->u.assign.exp = exp;
@@ -19,7 +19,7 @@ A_stm A_AssignStm(string id, A_exp exp){
 }
 
 A_stm A_PrintStm(A_expList exps){
-    A_sim s = checked_malloc(sizeof(*s));
+    A_stm s = checked_malloc(sizeof(*s));
     s->kind = A_printStm;
     s->u.print.exps = exps;
     return s;
@@ -56,7 +56,7 @@ A_exp A_EseqExp(A_stm stm, A_exp exp){
 }
 
 A_expList A_PairExpList(A_exp head, A_expList tail){
-    A_expList el = checked_malloc(sizeof(*e));
+    A_expList el = checked_malloc(sizeof(*el));
     el->kind = A_pairExpList;
     el->u.pair.head = head;
     el->u.pair.tail = tail;
@@ -64,7 +64,7 @@ A_expList A_PairExpList(A_exp head, A_expList tail){
 }
 
 A_expList A_LastExpList(A_exp last){
-    A_expList el = checked_malloc(sizeof(*e));
+    A_expList el = checked_malloc(sizeof(*el));
     el->kind = A_lastExpList;
     el->u.last = last;
     return el;
