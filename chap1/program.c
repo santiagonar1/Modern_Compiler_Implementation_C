@@ -6,7 +6,17 @@
  * statements
  */
 int maxargs(A_stm stm);
+
+/*
+ * Tells the maximum number of arguments of any print statement within any subexpression of a given
+ * expression
+ */
 int maxargs_exp(A_exp exp);
+
+/*
+ * Tells the maximum number of arguments of any print statement within any subexpression of a given
+ * expression list
+ */
 int maxargs_list(A_expList list);
 
 /*
