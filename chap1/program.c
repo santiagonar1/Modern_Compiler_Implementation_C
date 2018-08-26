@@ -24,6 +24,11 @@ int maxargs_list(A_expList list);
  */
 int numargs(A_expList list);
 
+/*
+ * Returns the biggest number
+ */
+int max(int a, int b);
+
 
 int main(int argc, const char *argv[])
 {
@@ -98,4 +103,8 @@ int numargs(A_expList list){
         return 1;
     else
         return 1 + numargs(list->u.pair.tail);
+}
+
+int max(int a, int b){
+    return (a > b) ? a : b;
 }
