@@ -52,50 +52,55 @@ int main(int argc, const char *argv[])
 }
 
 int maxargs(A_stm stm){
-    static int max = 0;
     switch(stm->kind){
         case A_printStm:
-            ; // empty statement required to make it compile
-            int num_args1 = numargs(stm->u.print.exps);
-            if(max < num_args1) max = num_args1;
-            int num_args2 = maxargs_list(stm->u.print.exps);
-            if(max < num_args2) max = num_args2;
+            return max(numargs(stm->u.print.exps), maxargs_list(stm->u.print.exps));
             break;
         case A_compoundStm:
-            maxargs(stm->u.compound.stm1);
-            maxargs(stm->u.compound.stm2);
+            return max(maxargs(stm->u.compound.stm1), maxargs(stm->u.compound.stm2));
             break;
         case A_assignStm:
-            if(stm->u.assign.exp->kind == A_eseqExp){
-                int num_args = maxargs_exp(stm->u.assign.exp);
-                if(num_args > max) max == num_args;
-            }
+            return maxargs_exp(stm->u.assign.exp);
             break;
+        default:
+            printf("Error: undefined type of statement\n");
+            return -1;
     }
-    return max;
 }
 
 int maxargs_exp(A_exp exp){
-    static int max = 0;
-    if(exp->kind == A_eseqExp){
-        int num_args = maxargs(exp->u.eseq.stm);
-        if(num_args > max) max = num_args;
-        maxargs_exp(exp->u.eseq.exp);
+    switch(exp->kind){
+        case A_idExp:
+            return 0;
+            break;
+        case A_numExp:
+            return 0;
+            break;
+        case A_opExp:
+            return 0;
+            break;
+        case A_eseqExp:
+            return max(maxargs(exp->u.eseq.stm), maxargs_exp(exp->u.eseq.exp));
+            break;
+        default:
+            printf("Error: undefined type of expression\n");
+            return -1;
+
     }
-    return max;
 }
 
 int maxargs_list(A_expList list){
-    static int max = 0;
-    if(list->kind == A_pairExpList){
-        int num_args = maxargs_exp(list->u.pair.head);
-        if(num_args > max) max = num_args;
-        maxargs_list(list->u.pair.tail);
-    } else{
-        int num_args = maxargs_exp(list->u.last);
-        if(num_args > max) max = num_args;
+    switch(list->kind){
+        case A_pairExpList:
+            return max(maxargs_exp(list->u.pair.head), maxargs_list(list->u.pair.tail));
+            break;
+        case A_lastExpList:
+            return maxargs_exp(list->u.last);
+            break;
+        default:
+            printf("Error: undefined type of expression list\n");
+            return -1;
     }
-    return max;
 }
 
 int numargs(A_expList list){
