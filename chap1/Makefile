@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-I. -I../tools/
-DEPS=slp.h ../tools/util.h
-OBJ=program.o slp.o ../tools/util.o
+DEPS=slp.h maxargs.h ../tools/util.h
+OBJ=program.o maxargs.o slp.o ../tools/util.o
 BINARY_NAME=program.out
 
 %.o: %.c $(DEPS)
